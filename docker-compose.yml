@@ -1,0 +1,19 @@
+version: "2.4"
+services:
+  openwb:
+    image: openwb:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+      network: host
+    init: true
+    network_mode: host
+    cap_add:
+      - NET_ADMIN
+    environment:
+      TZ: "Europe/Berlin"
+      WEB_PORT: 8888
+    volumes:
+      - type: bind
+        source: openwb.conf
+        target: /var/www/html/openWB/openwb.conf
