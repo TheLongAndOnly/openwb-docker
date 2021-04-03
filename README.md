@@ -13,4 +13,4 @@ This project allows to run the same open source software which powers the openWB
 
 ## Using Docker Compose
 
-Adjust configuration in ˚ docker-compose.yml` and run `docker-compose up -d`.
+Adjust configuration in `docker-compose.yml` and run `docker-compose up -d`.
