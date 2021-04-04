@@ -6,11 +6,21 @@ Run OpenWB in a container.
 
 This project allows to run the same open source software which powers the openWB products in a container.
 
-## Using Docker
+## Get Started
 
-1. Build the image: `docker build -t openwb .`
-2. Create and run a container: `docker run --network host -d -e WEB_PORT=8888 --cap-add=NET_ADMIN -v ./openwb.conf:/var/www/html/openWB/openwb.conf openwb`
+Choose one of the methods below to create and run a container with openWB:
 
-## Using Docker Compose
+Using Docker:
 
-Adjust configuration in `docker-compose.yml` and run `docker-compose up -d`.
+```shell
+docker run --network host -d -e WEB_PORT=8888 --cap-add=NET_ADMIN -v ./openwb.conf:/var/www/html/openWB/openwb.conf ingmarstein/openwb
+```
+
+Using Docker Compose: adjust configuration in `docker-compose.yml` and run
+```shell
+docker-compose up -d
+```
+
+Once the container is started, navigate to `http://${HOST}:${WEB_PORT}/openWB` to access the openWB web interface.
+
+It is recommended to mount `openwb.conf` from the host so that configuration changes persist a container restart.
