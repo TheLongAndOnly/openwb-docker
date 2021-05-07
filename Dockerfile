@@ -15,6 +15,10 @@ RUN apt-get update && \
 		python3-dev \
 		sudo && \
     rm -r /var/lib/apt/lists/*
+# https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=923479
+# https://github.com/balena-io-library/base-images/issues/562
+# should be fixed with openssl 1.1.1i-3 (buster is at 1.1.1d as of 2021-05-07)
+RUN c_rehash
 # Use https://www.piwheels.org for ARM platform Python wheels
 RUN printf "[global]\nextra-index-url=https://www.piwheels.org/simple\n" > /etc/pip.conf
 RUN echo "* * * * * /var/www/html/openWB/regel.sh >> /var/log/openWB.log 2>&1" | crontab -u pi - && \
