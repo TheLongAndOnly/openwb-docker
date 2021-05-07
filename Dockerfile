@@ -5,16 +5,20 @@ RUN useradd -ms /bin/bash pi
 RUN apt-get update && \
 	apt-get install -y --no-install-recommends \
 		apt-utils \
+		autoconf \
+		automake \
 		build-essential \
+		ca-certificates \
 		cron \
 		curl \
-		ca-certificates \
-		sudo \
-		python3 \
-		python3-pip \
 		iproute2 \
 		iputils-ping \
-		net-tools && \
+		libtool \
+		net-tools \
+		python-dev \
+		python3 \
+		python3-pip \
+		sudo && \
     rm -r /var/lib/apt/lists/*
 RUN pip3 install jq
 RUN echo "* * * * * /var/www/html/openWB/regel.sh >> /var/log/openWB.log 2>&1" | crontab -u pi - && \
