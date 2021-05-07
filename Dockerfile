@@ -1,14 +1,16 @@
 FROM debian:buster-slim
-ARG DEBIAN_FRONTEND noninteractive
+ARG DEBIAN_FRONTEND=noninteractive
 COPY entrypoint.sh /entrypoint.sh
 RUN useradd -ms /bin/bash pi
 RUN apt-get update && \
 	apt-get install -y --no-install-recommends \
+		apt-utils \
 		cron \
 		curl \
 		ca-certificates \
 		sudo \
 		python3 \
+		python3-pip \
 		iproute2 \
 		iputils-ping \
 		net-tools && \
