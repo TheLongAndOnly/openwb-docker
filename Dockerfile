@@ -5,21 +5,18 @@ RUN useradd -ms /bin/bash pi
 RUN apt-get update && \
 	apt-get install -y --no-install-recommends \
 		apt-utils \
-		autoconf \
-		automake \
-		build-essential \
 		ca-certificates \
 		cron \
 		curl \
 		iproute2 \
 		iputils-ping \
-		libtool \
 		net-tools \
-		python-dev \
 		python3 \
 		python3-pip \
 		sudo && \
     rm -r /var/lib/apt/lists/*
+# Use https://www.piwheels.org for ARM platform Python wheels
+RUN echo -e "[global]\nextra-index-url=https://www.piwheels.org/simple" > /etc/pip.conf
 RUN pip3 install jq
 RUN echo "* * * * * /var/www/html/openWB/regel.sh >> /var/log/openWB.log 2>&1" | crontab -u pi - && \
 	echo "* * * * * sleep 10 && /var/www/html/openWB/regel.sh >> /var/log/openWB.log 2>&1" | crontab -u pi - && \
