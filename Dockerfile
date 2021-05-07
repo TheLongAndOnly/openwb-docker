@@ -12,7 +12,7 @@ RUN apt-get update && \
 		iputils-ping \
 		net-tools \
 		python3 \
-		python3-pip \
+		python3-dev \
 		sudo && \
     rm -r /var/lib/apt/lists/*
 # Use https://www.piwheels.org for ARM platform Python wheels
