@@ -5,6 +5,7 @@ RUN useradd -ms /bin/bash pi
 RUN apt-get update && \
 	apt-get install -y --no-install-recommends \
 		apt-utils \
+		build-essential \
 		cron \
 		curl \
 		ca-certificates \
