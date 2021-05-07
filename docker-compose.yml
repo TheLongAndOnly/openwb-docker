@@ -13,3 +13,6 @@ services:
       - type: bind
         source: ./openwb.conf
         target: /var/www/html/openWB/openwb.conf
+      - type: bind
+        source: ./logdata
+        target: /var/www/html/openWB/web/logging/data
