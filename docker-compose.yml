@@ -3,7 +3,9 @@ services:
   openwb:
     image: ingmarstein/openwb:latest
     init: true
+    container_name: openwb
     network_mode: host
+    restart: unless-stopped
     cap_add:
       - NET_ADMIN
     environment:
