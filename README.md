@@ -1,3 +1,7 @@
+*IMPORTANT: This project is unmaintained*
+
+*Due to lack of interest in supporting a containerized environment by the OpenWB team, this project is no longer updated and no support is provided.*
+
 # openwb-docker
 
 Run OpenWB in a container.
