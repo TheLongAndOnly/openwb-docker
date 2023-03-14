@@ -1,7 +1,7 @@
 version: "2.4"
 services:
   openwb:
-    image: ingmarstein/openwb:latest
+    image: thelongandonly/openwb:latest
     init: true
     container_name: openwb
     network_mode: host

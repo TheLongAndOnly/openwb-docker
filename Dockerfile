@@ -15,6 +15,18 @@ RUN useradd -ms /bin/bash pi \
 		python3 \
 		python3-dev \
 		sudo \
+		ripgrep \
+		git \
+		libxslt1-dev \
+		openssl \
+		libcurl4 \
+		curl \
+		libgcrypt20 \
+		libgnutls30 \
+		libcurl3-gnutls \
+		libssl1.1 \
+		python3-lxml \
+		systemd \
     && rm -r /var/lib/apt/lists/* \
 	&& c_rehash \
 # https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=923479
@@ -29,7 +41,8 @@ RUN useradd -ms /bin/bash pi \
 * * * * * sleep 40 && /var/www/html/openWB/regel.sh >> /var/log/openWB.log 2>&1\n\
 * * * * * sleep 50 && /var/www/html/openWB/regel.sh >> /var/log/openWB.log 2>&1\n" | crontab -u pi - \
     && echo "pi ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/010_pi-nopasswd \
-    && /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/snaptec/openWB/master/openwb-install.sh)"
+    && usermod pi -aG www-data \
+    && /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/TheLongAndOnly/openWB/master/openwb-install.sh)"
 #USER pi
 #WORKDIR /home/pi
 ENTRYPOINT ["/entrypoint.sh"]
