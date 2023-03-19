@@ -31,5 +31,5 @@ service sudo start
 service cron start
 service mosquitto start
 service apache2 start
-/var/www/html/openWB/runs/atreboot.sh
+sudo -u pi /var/www/html/openWB/runs/atreboot.sh
 tail -f /var/log/openWB.log

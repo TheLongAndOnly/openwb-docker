@@ -47,6 +47,16 @@ chmod 755 /openwb-install-patched.sh
 cat /openwb-install-patched.sh
 /openwb-install-patched.sh
 
+printf "* * * * * /var/www/html/openWB/regel.sh >> /var/log/openWB.log 2>&1\n\
+* * * * * sleep 10 && /var/www/html/openWB/regel.sh >> /var/log/openWB.log 2>&1\n\
+* * * * * sleep 20 && /var/www/html/openWB/regel.sh >> /var/log/openWB.log 2>&1\n\
+* * * * * sleep 30 && /var/www/html/openWB/regel.sh >> /var/log/openWB.log 2>&1\n\
+* * * * * sleep 40 && /var/www/html/openWB/regel.sh >> /var/log/openWB.log 2>&1\n\
+* * * * * sleep 50 && /var/www/html/openWB/regel.sh >> /var/log/openWB.log 2>&1\n" | crontab -u pi -
+echo "pi ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/010_pi-nopasswd
+
+usermod -aG www-data pi
+
 OPENWBBASEDIR=/var/www/html/openWB
 # get a modified atreboot file
 perl -i -p0e 's/#\s*check\s*for\s*mosquitto\s*packages.*?\n\s*fi//s' ${OPENWBBASEDIR}/runs/atreboot.sh
@@ -56,6 +66,7 @@ cp ${OPENWBBASEDIR}/runs/atreboot.sh ${OPENWBBASEDIR}/runs/atreboot-once.sh
 
 perl -i -pe 's/sudo\s*\/usr\/sbin\/apachectl\s*\-k\s*graceful//g' ${OPENWBBASEDIR}/runs/atreboot-once.sh
 perl -i -pe 's/openwbRunLoggingOutput\s*at_reboot/at_reboot/g' ${OPENWBBASEDIR}/runs/atreboot-once.sh
+perl -i -pe 's/mosquitto_pub/echo \"Skip mosquitto_pub\" #mosquitto_pub/g' ${OPENWBBASEDIR}/runs/atreboot-once.sh
 
 # avoid installing php7.0 stuff
 touch /home/pi/ssl_patched
@@ -63,11 +74,3 @@ echo "Executing atreboot-once"
 chmod 755 ${OPENWBBASEDIR}/runs/atreboot-once.sh
 cat ${OPENWBBASEDIR}/runs/atreboot-once.sh
 sudo -u pi ${OPENWBBASEDIR}/runs/atreboot-once.sh
-
-printf "* * * * * /var/www/html/openWB/regel.sh >> /var/log/openWB.log 2>&1\n\
-* * * * * sleep 10 && /var/www/html/openWB/regel.sh >> /var/log/openWB.log 2>&1\n\
-* * * * * sleep 20 && /var/www/html/openWB/regel.sh >> /var/log/openWB.log 2>&1\n\
-* * * * * sleep 30 && /var/www/html/openWB/regel.sh >> /var/log/openWB.log 2>&1\n\
-* * * * * sleep 40 && /var/www/html/openWB/regel.sh >> /var/log/openWB.log 2>&1\n\
-* * * * * sleep 50 && /var/www/html/openWB/regel.sh >> /var/log/openWB.log 2>&1\n" | crontab -u pi -
-echo "pi ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/010_pi-nopasswd

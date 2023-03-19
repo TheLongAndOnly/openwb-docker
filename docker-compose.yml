@@ -2,6 +2,9 @@ version: "2.4"
 services:
   openwb:
     image: thelongandonly/openwb:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     init: true
     container_name: openwb
     network_mode: host
@@ -11,6 +14,8 @@ services:
     environment:
       TZ: "Europe/Berlin"
       WEB_PORT: 8888
+    tmpfs:
+      - /var/www/html/openWB/ramdisk
     volumes:
       - type: bind
         source: ./openwb.conf
@@ -18,6 +23,4 @@ services:
       - type: bind
         source: ./logdata
         target: /var/www/html/openWB/web/logging/data
-      - type: bind
-        source: ./mosquitto
-        target: /var/lib/mosquitto
+
