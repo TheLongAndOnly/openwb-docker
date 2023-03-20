@@ -6,10 +6,17 @@ Run OpenWB in a container.
 
 This project allows to run the same open source software which powers the openWB products in a container.
 
-
+I'm picking up the good work from https://github.com/IngmarStein/openwb-docker, trying to drive it to a working solutions. This has been build and test on a Raspberry Pi 4 with 4GB RAM and Debian Bullseye as host OS.
 
 ## Get Started
 
 1) Clone this repo
 2) docker compose build
 3) docker compose up -d
+4) Connect to http://<hostname>:8888/openWB
+  
+You should be able to see and access the WebUI of **openWB**
+  
+## Troubleshooting
+
+The settings file **openWB.conf** seems to be only updated if the variable exists. the original file deployed from openWB is incomplete and configuraiton does not work properly trough the web interface. I added the variables I figured out missing, but there might be more.
