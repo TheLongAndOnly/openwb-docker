@@ -13,7 +13,7 @@ I'm picking up the good work from https://github.com/IngmarStein/openwb-docker, 
 1) Clone this repo
 2) docker compose build
 3) docker compose up -d
-4) Connect to http://<hostname>:8888/openWB
+4) Connect to http://your-ip:8888/openWB
   
 You should be able to see and access the WebUI of **openWB**
   
