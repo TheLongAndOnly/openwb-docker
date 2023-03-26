@@ -1,4 +1,4 @@
-version: "3"
+version: "3.7"
 
 services:
   openwb:
@@ -18,6 +18,6 @@ services:
     tmpfs:
       - /var/www/html/openWB/ramdisk
     volumes:
-      - ./openwb.conf:/var/www/html/openWB/openwb.conf
+      - ./config:/var/www/html/openWB/config
       - ./logdata:/var/www/html/openWB/web/logging/data
 

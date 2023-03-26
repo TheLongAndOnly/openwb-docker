@@ -27,9 +27,12 @@ setup_web_port "$WEB_PORT"
 # fix MTQQ clients when using ports other than 80
 find /var/www/html/openWB -name "*.js" -type f -exec sed -i 's/Messaging.Client(location.host,/Messaging.Client(location.hostname,/g' {} +
 
+# work around for config save problem -> map external file to a different name and copy of the real
+# we need to ensure after save, this file shall be copied back to the conf folder
+cp /var/www/html/openWB/config/openwb.conf /var/www/html/openWB/openwb.conf
+
 service sudo start
 service cron start
-service mosquitto start
 service apache2 start
 sudo -u pi /var/www/html/openWB/runs/atreboot.sh
 tail -f /var/log/openWB.log
