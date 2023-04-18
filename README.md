@@ -21,4 +21,8 @@ You should be able to see and access the WebUI of **openWB**
 
 The settings file **openWB.conf** seems to be only updated if the variable exists. the original file deployed from openWB is incomplete and configuraiton does not work properly trough the web interface. I added the variables I figured out missing, but there might be more.
 
-The container does not contain Mosquito. It is assumed the host has an instance running. Ensure port 9001 is open for WebSocket connections
+The container does not contain mosquitto. It is assumed the host has an instance running. Ensure port 9001 is open for WebSocket connections
+
+If you need a solution with integrated mosquitto, use
+2) docker compose -f docker-compose-mosquitto.yml build
+3) docker compose -f docker-compose-mosquitto.yml up -d

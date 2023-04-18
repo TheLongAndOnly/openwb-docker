@@ -1,0 +1,24 @@
+version: "3.7"
+
+services:
+  openwb:
+    image: thelongandonly/openwb-mosquitto:latest
+    build:
+      context: .
+      dockerfile: Dockerfile-mosquitto
+    init: true
+    container_name: openwb
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+    environment:
+      TZ: "Europe/Berlin"
+      WEB_PORT: 8888
+    tmpfs:
+      - /var/www/html/openWB/ramdisk
+    volumes:
+      - ./config:/var/www/html/openWB/config
+      - ./logdata:/var/www/html/openWB/web/logging/data
+      - ./mosquitto:/var/lib/mosquitto
+    ports:
+      - "8888:8888"
